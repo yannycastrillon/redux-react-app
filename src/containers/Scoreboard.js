@@ -1,3 +1,7 @@
+import React from 'react';
+import Stopwatch from '../components/Stopwatch';
+import Stats from '../components/Stats';
+import Counter from '../components/Counter';
 
 const INITIAL_STATE = {
   players: [
@@ -16,7 +20,7 @@ const INITIAL_STATE = {
   ],
 }
 
-const Application = React.createClass({
+const Scoreboard = React.createClass({
   getInitialState: function () {
     return INITIAL_STATE;
   },
@@ -76,98 +80,9 @@ Header.propTypes = {
 
 // Move to components/Stats.js
 // -----------------------------------------------------------------------
-function Stats(props) {
-  const playerCount = props.players.length;
-  const totalPoints = props.players.reduce(function(total, player) {
-    return total + player.score;
-  }, 0);
-
-  return (
-    <table className="stats">
-      <tbody>
-        <tr>
-          <td>Players:</td>
-          <td>{playerCount}</td>
-        </tr>
-        <tr>
-          <td>Total Points:</td>
-          <td>{totalPoints}</td>
-        </tr>
-      </tbody>
-    </table>
-  )
-}
-
-Stats.propTypes = {
-  players: React.PropTypes.array.isRequired,
-};
 
 // ------------------------------------------------------------------------
 
-const Stopwatch = React.createClass({
-  getInitialState: function () {
-    return ({
-      running: false,
-      previouseTime: 0,
-      elapsedTime: 0,
-    });
-  },
-
-  componentDidMount: function () {
-    this.interval = setInterval(this.onTick);
-  },
-
-  componentWillUnmount: function () {
-    clearInterval(this.interval);
-  },
-
-
-  onStart: function () {
-    this.setState({
-      running: true,
-      previousTime: Date.now(),
-    });
-  },
-
-  onStop: function () {
-    this.setState({
-      running: false,
-    });
-  },
-
-  onReset: function () {
-    this.setState({
-      elapsedTime: 0,
-      previousTime: Date.now(),
-    });
-  },
-
-  onTick: function () {
-    if (this.state.running) {
-      var now = Date.now();
-      this.setState({
-        elapsedTime: this.state.elapsedTime + (now - this.state.previousTime),
-        previousTime: Date.now(),
-      });
-    }
-  },
-
-  render: function () {
-    var seconds = Math.floor(this.state.elapsedTime / 1000);
-    return (
-      <div className="stopwatch" >
-        <h2>Stopwatch</h2>
-        <div className="stopwatch-time"> {seconds} </div>
-        { this.state.running ?
-          <button onClick={this.onStop}>Stop</button>
-          :
-          <button onClick={this.onStart}>Start</button>
-        }
-        <button onClick={this.onReset}>Reset</button>
-      </div>
-    )
-  }
-});
 
 // ----------------------------------------------------------------------
 
@@ -194,24 +109,6 @@ Player.propTypes = {
 
 // ----------------------------------------------------------
 
-function Counter(props) {
- return (
-   <div className="counter" >
-     <button className="counter-action decrement" onClick={() => props.onChange(-1)}>
-       -
-     </button>
-     <div className="counter-score"> {props.score} </div>
-     <button className="counter-action increment" onClick={() => props.onChange(1)}>
-       +
-     </button>
-   </div>
- );
-}
-
-Counter.propTypes = {
-  onChange: React.PropTypes.func.isRequired,
-  score: React.PropTypes.number.isRequired,
-};
 
 const AddPlayerForm = React.createClass({
   propTypes: {
@@ -250,3 +147,4 @@ const AddPlayerForm = React.createClass({
   }
 });
 
+export default Scoreboard;
