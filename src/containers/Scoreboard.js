@@ -19,6 +19,7 @@ class Scoreboard extends Component {
     /* BindActionCreator takes a dispatch in order to send action to the reducer.
      * BindActionCreator ensures when an action is created also get dispatch.
     */
+    console.log(this.props);
     const { dispatch, players } = this.props
     const addPlayer = bindActionCreators(PlayerActionCreator.addPlayer, dispatch);
     const removePlayer = bindActionCreators(PlayerActionCreator.removePlayer, dispatch);
@@ -49,13 +50,13 @@ class Scoreboard extends Component {
 
 // Return an object that gets merge into the scoreboard component Props.
 const mapStateToProps = state => {
-  {
+  return ({
     players: state
-  }
+  })
 };
 
 /* Connect take a function which contains the data that we want to transform STATE -> PROPS
- * Scoreboard is the container that we want to connect to redux.
+ * Scoreboard is the container that we want to Connect to redux.
  * It subscribes Scoreboard to any changes/updates in state.
  * players gets injected as a prop to scoreboard container.
 */
