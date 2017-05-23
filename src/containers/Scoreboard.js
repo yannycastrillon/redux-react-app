@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import * as PlayerActionCreator from '../actions/player';
 import Player from '../components/Player';
 import Header from '../components/Header';
-import AddPlayerForm from '../components/AddPlayerForm'
+import AddPlayerForm from '../components/AddPlayerForm';
+import PlayerDetails from '../components/PlayerDetails';
 
 // Connect recieves a function that maps stateData into PropsData (translator).
 // It is used to pass data between components.
@@ -20,11 +21,23 @@ class Scoreboard extends Component {
      * BindActionCreator ensures when an action is created also get dispatch.
     */
     console.log(this.props);
-    const { dispatch, players } = this.props
+    const { dispatch, state, selectedPlayerIndex } = this.props
+
+    console.log("********** This is the players OBJECT *********");
+    console.log(state.players);
+    console.log("*******************");
+
     const addPlayer = bindActionCreators(PlayerActionCreator.addPlayer, dispatch);
     const removePlayer = bindActionCreators(PlayerActionCreator.removePlayer, dispatch);
     const updatePlayerScore = bindActionCreators(PlayerActionCreator.updatePlayerScore, dispatch);
-    const playerComponents = players.map( (player, index) => (
+    const selectPlayer = bindActionCreators(PlayerActionCreator.selectPlayer, dispatch);
+
+    const selectedPlayer = state.players.map((player) => {
+      if (player.index == selectedPlayerIndex) {
+        return player;
+      }
+    })
+    const playerComponents = state.players.map( (player, index) => (
         <Player
           index={index}
           name ={player.name}
@@ -35,13 +48,15 @@ class Scoreboard extends Component {
         />
       )
     )
+
     return (
       <div className="scoreboard">
-        <Header players={players} />
+        <Header players={state.players} />
         <div className="players">
           { playerComponents }
         </div>
         <AddPlayerForm addPlayer={addPlayer} />
+        <PlayerDetails selectedPlayer={selectedPlayer}/>
       </div>
     );
   };
@@ -50,7 +65,8 @@ class Scoreboard extends Component {
 // Return an object that gets merge into the scoreboard component Props.
 const mapStateToProps = state => (
   {
-    players: state
+    state: state,
+    selectedPlayerIndex: state
   }
 )
 

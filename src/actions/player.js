@@ -1,6 +1,8 @@
 import * as PlayerActionTypes from '../actiontypes/player';
 
 
+// The ActionCreator
+
 export const addPlayer = name => {
   return {
     type: PlayerActionTypes.ADD_PLAYER,
@@ -20,5 +22,12 @@ export const updatePlayerScore = (index, score) => {
     type: PlayerActionTypes.UPDATE_PLAYER_SCORE,
     index,
     score
+  };
+};
+
+export const selectPlayer = (index) => {
+  return {
+    type: PlayerActionTypes.SELECT_PLAYER,
+    index
   };
 };
