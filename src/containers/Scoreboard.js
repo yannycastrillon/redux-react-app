@@ -24,18 +24,17 @@ class Scoreboard extends Component {
     const addPlayer = bindActionCreators(PlayerActionCreator.addPlayer, dispatch);
     const removePlayer = bindActionCreators(PlayerActionCreator.removePlayer, dispatch);
     const updatePlayerScore = bindActionCreators(PlayerActionCreator.updatePlayerScore, dispatch);
-
-    const playerComponents = players.map( (player,index) => {
-      <Player
-        index={index}
-        name ={player.name}
-        score={player.score}
-        key  ={player.key}
-        updatePlayerScore={updatePlayerScore}
-        removePlayer={removePlayer}
-      />
-    })
-
+    const playerComponents = players.map( (player, index) => (
+        <Player
+          index={index}
+          name ={player.name}
+          score={player.score}
+          key={player.name}
+          updatePlayerScore={updatePlayerScore}
+          removePlayer={removePlayer}
+        />
+      )
+    )
     return (
       <div className="scoreboard">
         <Header players={players} />
@@ -49,11 +48,11 @@ class Scoreboard extends Component {
 }
 
 // Return an object that gets merge into the scoreboard component Props.
-const mapStateToProps = state => {
-  return ({
+const mapStateToProps = state => (
+  {
     players: state
-  })
-};
+  }
+)
 
 /* Connect take a function which contains the data that we want to transform STATE -> PROPS
  * Scoreboard is the container that we want to Connect to redux.

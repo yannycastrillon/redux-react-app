@@ -1,7 +1,7 @@
 import * as PlayerActionTypes from '../actiontypes/player';
 
 
-const INITIAL_STATE = [
+const initialState = [
   {
     name: 'Jim Hoskins',
     score: 31,
@@ -16,10 +16,12 @@ const INITIAL_STATE = [
   }
 ];
 
-export default function Player (state=INITIAL_STATE, action){
+// Reducer is a pure function and SHOULD NOT mutate the current state.
+export default function Player (state=initialState, action){
   switch (action.type) {
     case PlayerActionTypes.ADD_PLAYER:
       return [
+        // all items in the state array
         ...state,
         {
           name: action.name,
@@ -39,6 +41,7 @@ export default function Player (state=INITIAL_STATE, action){
             score:player.score + action.score
           };
         }
+        return player;
       })
     default:
       return state;

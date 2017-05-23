@@ -20,8 +20,8 @@ const Counter = props => {
 }
 
 Counter.propTypes = {
-  index: PropTypes.number.isRequired,
   updatePlayerScore: PropTypes.func.isRequired,
+  index: PropTypes.number.isRequired,
   score: PropTypes.number.isRequired,
 };
 
