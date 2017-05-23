@@ -1,27 +1,24 @@
 import React, { PropTypes } from 'react'
 
 
-const PlayerDetails = ( props ) => {
-  // if (props.selectedPlayerIndex != -1 ) {
-  console.log("******* PROPS INSIDE PLAYER DETAILS**********");
-  console.log(props);
+const PlayerDetails = ( { selectedPlayer } ) => {
 
-  if (props.selectPlayer) {
+  if (selectedPlayer) {
       return (
         <div>
-          <h3> { props.selectPlayer.name } </h3>
+          <h3> { selectedPlayer.name } </h3>
           <ul>
             <li>
               <span> Score: </span>
-              { props.selectPlayer.score }
+              { selectedPlayer.score }
             </li>
             <li>
               <span> Created: </span>
-              { props.selectPlayer.created }
+              { selectedPlayer.created }
             </li>
             <li>
               <span> Updated: </span>
-              { props.selectPlayer.updated }
+              { selectedPlayer.updated }
             </li>
           </ul>
         </div>
@@ -32,4 +29,7 @@ const PlayerDetails = ( props ) => {
     }
 }
 
+PlayerDetails.propTypes = {
+  selectedPlayer: PropTypes.object
+}
 export default PlayerDetails;

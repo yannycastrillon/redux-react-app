@@ -55,12 +55,12 @@ export default function Player (state=initialState, action){
       }
 
     case PlayerActionTypes.UPDATE_PLAYER_SCORE:
-      const updatePlayerList = state.map( (player, index) => {
+      const updatePlayerList = state.players.map( (player, index) => {
         if (index === action.index) {
           return {
             ...player,
             score:player.score + action.score,
-            updated: Date.now
+            updated: `${month}/${day}/${year}`
           };
         }
         return player;
@@ -73,7 +73,7 @@ export default function Player (state=initialState, action){
     case PlayerActionTypes.SELECT_PLAYER:
       return {
           ...state,
-          selectedPlayerIndex = action.index
+          selectedPlayerIndex: action.index
       }
     default:
       return state;

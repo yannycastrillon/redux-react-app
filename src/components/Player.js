@@ -27,6 +27,7 @@ Player.propTypes = {
   score: PropTypes.number.isRequired,
   removePlayer: PropTypes.func.isRequired,
   updatePlayerScore:PropTypes.func.isRequired,
+  selectPlayer: PropTypes.func.isRequired
 };
 
 export default Player;
