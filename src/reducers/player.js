@@ -4,21 +4,33 @@ import * as PlayerActionTypes from '../actiontypes/player';
 const initialState = {
   players: [
     {
-      name: 'Jim Hoskins',
-      score: 31,
-      created:'11/08/2016',
+      name: 'Luis Suarez',
+      score: 40,
+      created:'11/08/2015',
       updated:'11/09/2016',
     },
     {
-      name: 'Andrew Chalkley',
-      score: 20,
-      created:'11/09/2016',
+      name: 'Lionel Messi',
+      score: 26,
+      created:'11/08/2015',
+      updated:'11/09/2016',
+    },
+    {
+      name: 'Cristiano Ronaldo',
+      score: 35,
+      created:'11/09/2015',
       updated:'11/10/2016',
     },
     {
-      name: 'Alena Holligan',
-      score: 50,
-      created:'11/11/2016',
+      name: 'Neymar',
+      score: 24,
+      created:'11/11/2015',
+      updated:'11/12/2016',
+    },
+    {
+      name: 'Karim Benzema',
+      score: 24,
+      created:'11/11/2015',
       updated:'11/12/2016',
     }
   ],
